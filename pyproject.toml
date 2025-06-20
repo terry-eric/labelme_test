@@ -3,8 +3,8 @@ requires = ["hatchling>=1.20.0", "hatch-vcs", "hatch-fancy-pypi-readme"]
 build-backend = "hatchling.build"
 
 [project]
-name = "labelme"
-description = "Image Polygonal Annotation with Python"
+name = "labelme-insight"
+description = "Enhanced Visual Annotation for Intuitive Label Checking"
 license = { text = "GPL-3.0-only" }
 requires-python = ">=3.9"
 version = "5.8.1"
