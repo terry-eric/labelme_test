@@ -1,9 +1,9 @@
 <h1 align="center">
-  <img src="labelme/icons/icon.png"><br/>labelme
+  <img src="labelme/icons/icon.png"><br/>Labelme Insight
 </h1>
 
 <h4 align="center">
-  Image Polygonal Annotation with Python
+  Enhanced Visual Annotation for Intuitive Label Checking
 </h4>
 
 <div align="center">
@@ -28,7 +28,7 @@
 
 ## Description
 
-Labelme is a graphical image annotation tool inspired by <http://labelme.csail.mit.edu>.  
+Labelme Insight is a graphical image annotation tool inspired by <http://labelme.csail.mit.edu> and enhanced for better visual feedback and annotation checking.  
 It is written in Python and uses Qt for its graphical interface.
 
 <img src="examples/instance_segmentation/data_dataset_voc/JPEGImages/2011_000006.jpg" width="19%" /> <img src="examples/instance_segmentation/data_dataset_voc/SegmentationClass/2011_000006.png" width="19%" /> <img src="examples/instance_segmentation/data_dataset_voc/SegmentationClassVisualization/2011_000006.jpg" width="19%" /> <img src="examples/instance_segmentation/data_dataset_voc/SegmentationObject/2011_000006.png" width="19%" /> <img src="examples/instance_segmentation/data_dataset_voc/SegmentationObjectVisualization/2011_000006.jpg" width="19%" />  
@@ -49,6 +49,7 @@ It is written in Python and uses Qt for its graphical interface.
 - [x] GUI customization (predefined labels / flags, auto-saving, label validation, etc). ([#144](https://github.com/wkentaro/labelme/pull/144))
 - [x] Exporting VOC-format dataset for semantic/instance segmentation. ([semantic segmentation](examples/semantic_segmentation), [instance segmentation](examples/instance_segmentation))
 - [x] Exporting COCO-format dataset for instance segmentation. ([instance segmentation](examples/instance_segmentation))
+- [x] 顯示標註長度（線段）與ID（多邊形）於圖形上，方便檢查標註內容。by terry-eric
 
 
 ## Installation
