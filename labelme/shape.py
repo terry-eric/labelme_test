@@ -176,6 +176,7 @@ class Shape(object):
         if self.mask is None and not self.points:
             return
 
+        # 1) 绘制蒙版填充与轮廓
         color = self.select_line_color if self.selected else self.line_color
         pen = QtGui.QPen(color)
         # Try using integer sizes for smoother drawing(?)
@@ -196,6 +197,7 @@ class Shape(object):
                 QtCore.Qt.IgnoreAspectRatio,  # type: ignore[attr-defined]
                 QtCore.Qt.SmoothTransformation,  # type: ignore[attr-defined]
             )
+            painter.drawImage(self._scale_point(self.points[0]), qimage)
 
             painter.drawImage(self._scale_point(point=self.points[0]), qimage)
 
@@ -212,6 +214,7 @@ class Shape(object):
                     )
             painter.drawPath(line_path)
 
+        # 2) 绘制顶点和多边形
         if self.points:
             line_path = QtGui.QPainterPath()
             vrtx_path = QtGui.QPainterPath()
@@ -276,6 +279,25 @@ class Shape(object):
             painter.setPen(pen)
             painter.drawPath(negative_vrtx_path)
             painter.fillPath(negative_vrtx_path, QtGui.QColor(255, 0, 0, 255))
+                # 3) 绘制描述文字：黑色粗体，白底半透明
+            if self.description or len(self.points)>=2:
+                pt = self._scale_point(self.points[0]) + QtCore.QPointF(5, -5)
+                font = QtGui.QFont("Arial", 14, QtGui.QFont.Bold)
+                painter.setFont(font)
+                metrics = QtGui.QFontMetrics(font)
+                text = None
+                if self.shape_type=="line":
+                    text = f"{labelme.utils.distance(self.points[0] - self.points[1]):.2f}"
+                elif self.shape_type=="polygon":
+                    text = f"ID: {self.description}"
+
+                w = metrics.horizontalAdvance(text)
+                h = metrics.height()
+                
+                rect = QtCore.QRectF(pt.x(), pt.y() - h, w, h)
+                painter.fillRect(rect, QtGui.QColor(255, 255, 255, 200))
+                painter.setPen(QtGui.QColor(0, 0, 0))
+                painter.drawText(pt, text)
 
     def drawVertex(self, path, i):
         d = self.point_size
